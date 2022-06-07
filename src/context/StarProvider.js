@@ -4,6 +4,7 @@ import response from '../testData';
 import Context from './Context';
 
 function StarProvider({ children }) {
+  const [filterlist, setFilterlist] = useState([]);
   const [star, setStar] = useState([]);
   const [name, setName] = useState({
     filterByName: {
@@ -16,6 +17,7 @@ function StarProvider({ children }) {
       // const response = await fetch('https://swapi-trybe.herokuapp.com/api/planets/');
       // const data = await response.json();
       setStar(response.results);
+      setFilterlist(response.results);
     } catch (e) {
       console.log(e);
     }
@@ -24,25 +26,22 @@ function StarProvider({ children }) {
     apiStar();
   }, []);
 
-  useEffect(() => {
-    if (name.filterByName.name.length !== 0) {
-      apiStar();
-      setStar(star.filter((item) => item.name.includes(name.filterByName.name)));
-    } else { apiStar(); }
-
-    // console.log(teste);
-  }, [name]);
-
   function handleChange({ target: { value } }) {
     setName({
       filterByName: {
-        name: value,
+        name: value.toLowerCase(),
       },
     });
   }
+  useEffect(() => {
+    if (name.filterByName.name.length > 0) {
+      setFilterlist(star.filter((item) => item.name.toLowerCase()
+        .includes(name.filterByName.name)));
+    }
+  }, [name]);
 
   const contextType = {
-    star,
+    filterlist,
     handleChange,
   };
   return (

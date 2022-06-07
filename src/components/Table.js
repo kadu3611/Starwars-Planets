@@ -3,8 +3,8 @@ import Context from '../context/Context';
 import Header from './Hedear';
 
 function Table() {
-  const { star, handleChange } = useContext(Context);
-  console.log(star);
+  const { filterlist, handleChange } = useContext(Context);
+  console.log(filterlist);
   return (
     <body>
       <input
@@ -17,7 +17,7 @@ function Table() {
         <tbody>
           {
 
-            star.map((item, index) => (
+            filterlist.map((item, index) => (
               <tr key={ index }>
                 <td>
                   {item.name}
