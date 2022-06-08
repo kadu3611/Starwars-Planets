@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import response from '../testData';
-// import PropTypes from 'prop-types';
 import Context from './Context';
 
 function StarProvider({ children }) {
+  console.log(children);
   const [filterlist, setFilterlist] = useState([]);
   const [star, setStar] = useState([]);
   const [inpName, setInpName] = useState({
@@ -11,9 +12,6 @@ function StarProvider({ children }) {
       name: '',
     },
   });
-  /*   const [inpNumber, setInpNumber] = useState(0);
-  const [selecColumn, setColumn] = useState('population');
-  const [selecComparison, setOperator] = useState('maior que'); */
   const [filterByNumericValues, setFilterByNumericValues] = useState(
     {
       column: 'population',
@@ -48,15 +46,6 @@ function StarProvider({ children }) {
       ...filterByNumericValues,
       [id]: value,
     });
-    /*     if (id === 'column') {
-      setColumn(value);
-    }
-    if (id === 'comparison') {
-      setOperator(value);
-    }
-    if (id === 'value') {
-      setInpNumber(value);
-    } */
   }
 
   useEffect(() => {
@@ -98,8 +87,8 @@ function StarProvider({ children }) {
   );
 }
 
-/* StarProvider.propTypes = {
+StarProvider.propTypes = {
   children: PropTypes.objectOf.isRequired,
-}; */
+};
 
 export default StarProvider;
