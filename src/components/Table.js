@@ -3,8 +3,11 @@ import Context from '../context/Context';
 import Header from './Hedear';
 
 function Table() {
-  const { filterlist, handleChange } = useContext(Context);
-  console.log(filterlist);
+  const { filterlist,
+    filterByNumericValues,
+    handleChange,
+    handleChangeFilter,
+    onFilter } = useContext(Context);
   return (
     <body>
       <input
@@ -12,6 +15,46 @@ function Table() {
         name="filtro"
         onChange={ handleChange }
       />
+      <label htmlFor="column">
+        Coluna
+        <select
+          data-testid="column-filter"
+          onChange={ handleChangeFilter }
+          id="column"
+        >
+          <option value="population">population</option>
+          <option value="orbital_period">orbital_period</option>
+          <option value="diameter">diameter</option>
+          <option value="rotation_period">rotation_period</option>
+          <option value="surface_water">surface_water</option>
+        </select>
+      </label>
+      <label htmlFor="comparison">
+        Operador
+        <select
+          id="comparison"
+          data-testid="comparison-filter"
+          onChange={ handleChangeFilter }
+        >
+          <option value="maior que">maior que</option>
+          <option value="menor que">menor que</option>
+          <option value="igual a">igual a</option>
+        </select>
+      </label>
+      <input
+        type="number"
+        data-testid="value-filter"
+        onChange={ handleChangeFilter }
+        id="value"
+        value={ filterByNumericValues.value }
+      />
+      <button
+        type="button"
+        data-testid="button-filter"
+        onClick={ onFilter }
+      >
+        FILTRAR
+      </button>
       <table>
         <Header />
         <tbody>
