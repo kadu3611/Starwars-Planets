@@ -68,7 +68,7 @@ function StarProvider({ children }) {
 
   function onFilter() {
     const { value, comparison, column } = filterByNumericValues;
-    setFilterlist(star.filter((item) => {
+    setFilterlist(filterlist.filter((item) => {
       /* if (item[column] === 'unknown') {
         item[column] = 0;
       } */
@@ -77,8 +77,10 @@ function StarProvider({ children }) {
       }
       if (comparison === 'menor que') {
         return Number(item[column]) < Number(value);
+      } if (comparison === 'igual a') {
+        return Number(item[column]) === Number(value);
       }
-      return Number(item[column]) === Number(value);
+      return filterlist;
     }));
   }
 
