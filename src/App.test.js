@@ -39,7 +39,7 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-describe('1 - Faça uma requisição para o endpoint `/planets` da API de Star Wars e preencha uma tabela com os dados retornados, com exceção dos da coluna `residents`', () => {
+describe.only('1 - Faça uma requisição para o endpoint `/planets` da API de Star Wars e preencha uma tabela com os dados retornados, com exceção dos da coluna `residents`', () => {
 
   it('Realize uma requisição para a API', async () => {
     await act(async () => {
@@ -93,7 +93,7 @@ describe('1 - Faça uma requisição para o endpoint `/planets` da API de Star W
   });
 });
 
-describe('2 - Filtre a tabela através de um texto, inserido num *campo de texto*, exibindo somente os planetas cujos nomes incluam o texto digitado', () => {
+describe.only('2 - Filtre a tabela através de um texto, inserido num *campo de texto*, exibindo somente os planetas cujos nomes incluam o texto digitado', () => {
 
   const ROWS_WITH_LETTER_O = 8;
   const ROWS_WITH_LETTERS_OO = 3;
@@ -169,7 +169,7 @@ describe('2 - Filtre a tabela através de um texto, inserido num *campo de texto
   });
 });
 
-describe.only('3 - Crie um filtro para valores numéricos', () => {
+describe('3 - Crie um filtro para valores numéricos', () => {
 
   it('Renderize o filtro de coluna', async () => {
     await act(async () => {
@@ -294,7 +294,7 @@ describe.only('3 - Crie um filtro para valores numéricos', () => {
   });
 });
 
-describe.only('4 - Implemente múltiplos filtros numéricos', () => {
+describe('4 - Implemente múltiplos filtros numéricos', () => {
   it('Adicione dois filtros e verifique se a tabela foi atualizada com as informações filtradas', async () => {
     await act(async () => {
       render(<App />);

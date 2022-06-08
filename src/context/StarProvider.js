@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import response from '../testData';
+// import response from '../testData';
 import Context from './Context';
 
 function StarProvider({ children }) {
@@ -21,10 +21,12 @@ function StarProvider({ children }) {
   );
   const apiStar = async () => {
     try {
-      // const response = await fetch('https://swapi-trybe.herokuapp.com/api/planets/');
-      // const data = await response.json();
-      setStar(response.results);
-      setFilterlist(response.results);
+      const response = await fetch('https://swapi-trybe.herokuapp.com/api/planets/');
+      const data = await response.json();
+      setStar(data);
+      setFilterlist(data);
+      /* setStar(response.results);
+      setFilterlist(response.results); */
     } catch (e) {
       console.log(e);
     }
@@ -66,10 +68,8 @@ function StarProvider({ children }) {
       }
       if (comparison === 'menor que') {
         return Number(item[column]) < Number(value);
-      } if (comparison === 'igual a') {
-        return Number(item[column]) === Number(value);
       }
-      return filterlist;
+      return Number(item[column]) === Number(value);
     }));
   }
 
