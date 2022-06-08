@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-// import response from '../testData';
+import response from '../testData';
 import Context from './Context';
 
 function StarProvider({ children }) {
-  console.log(children);
   const [filterlist, setFilterlist] = useState([]);
   const [star, setStar] = useState([]);
   const [inpName, setInpName] = useState({
@@ -21,21 +20,23 @@ function StarProvider({ children }) {
   );
   const apiStar = async () => {
     try {
-      const response = await fetch('https://swapi-trybe.herokuapp.com/api/planets/');
+      /* const response = await fetch('https://swapi-trybe.herokuapp.com/api/planets/');
       const data = await response.json();
       setStar(data);
-      setFilterlist(data);
-      /* setStar(response.results);
-      setFilterlist(response.results); */
+      setFilterlist(data); */
+      setStar(response.results);
+      setFilterlist(response.results);
     } catch (e) {
       console.log(e);
     }
   };
   useEffect(() => {
     apiStar();
-  }, []);
+    setFilterlist(star);
+  }, [star]);
 
   function handleChange({ target: { value } }) {
+    console.log('veio', value);
     setInpName({
       filterByName: {
         name: value.toLowerCase(),
@@ -54,6 +55,8 @@ function StarProvider({ children }) {
     if (inpName.filterByName.name.length > 0) {
       setFilterlist(star.filter((item) => item.name.toLowerCase()
         .includes(inpName.filterByName.name)));
+    } else {
+      setFilterlist(star);
     }
   }, [inpName]);
 
