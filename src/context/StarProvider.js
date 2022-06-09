@@ -32,8 +32,8 @@ function StarProvider({ children }) {
       const data = await response.json();
       setStar(data.results);
       setFilterlist(data.results);
-      //setStar(response.results);
-      //setFilterlist(response.results);
+      // setStar(response.results);
+      // setFilterlist(response.results);
     } catch (e) {
       console.log(e);
     }
