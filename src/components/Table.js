@@ -10,7 +10,7 @@ function Table() {
     onFilter,
     arrayColumn,
     filterSelect } = useContext(Context);
-    console.log(filterSelect);
+  console.log(filterSelect);
   return (
     <body>
       <input

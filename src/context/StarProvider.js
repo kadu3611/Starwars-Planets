@@ -28,12 +28,12 @@ function StarProvider({ children }) {
     'orbital_period', 'diameter', 'rotation_period', 'surface_water']);
   const apiStar = async () => {
     try {
-      /* const response = await fetch('https://swapi-trybe.herokuapp.com/api/planets/');
+      const response = await fetch('https://swapi-trybe.herokuapp.com/api/planets/');
       const data = await response.json();
-      setStar(data);
-      setFilterlist(data); */
-      setStar(response.results);
-      setFilterlist(response.results);
+      setStar(data.results);
+      setFilterlist(data.results);
+/*       setStar(response.results);
+      setFilterlist(response.results); */
     } catch (e) {
       console.log(e);
     }
