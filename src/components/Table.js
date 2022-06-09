@@ -7,7 +7,10 @@ function Table() {
     filterByNumericValues,
     handleChange,
     handleChangeFilter,
-    onFilter } = useContext(Context);
+    onFilter,
+    arrayColumn,
+    filterSelect } = useContext(Context);
+    console.log(filterSelect);
   return (
     <body>
       <input
@@ -22,11 +25,13 @@ function Table() {
           onChange={ handleChangeFilter }
           id="column"
         >
-          <option value="population">population</option>
-          <option value="orbital_period">orbital_period</option>
-          <option value="diameter">diameter</option>
-          <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+          {
+            arrayColumn.map((item, index) => (
+              <option key={ index } value={ item }>
+                {item}
+              </option>
+            ))
+          }
         </select>
       </label>
       <label htmlFor="comparison">

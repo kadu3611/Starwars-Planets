@@ -4,8 +4,13 @@ import response from '../testData';
 import Context from './Context';
 
 function StarProvider({ children }) {
-  const [filterlist, setFilterlist] = useState([]);
+  const [filterlist, setFilterlist] = useState([{
+    column: '',
+    comparison: '',
+    value: 0,
+  }]);
   const [star, setStar] = useState([]);
+  const [filterSelect, setFilterSelect] = useState([]);
   const [inpName, setInpName] = useState({
     filterByName: {
       name: '',
@@ -18,6 +23,9 @@ function StarProvider({ children }) {
       value: 0,
     },
   );
+
+  const [arrayColumn, setArrayColumn] = useState(['population',
+    'orbital_period', 'diameter', 'rotation_period', 'surface_water']);
   const apiStar = async () => {
     try {
       /* const response = await fetch('https://swapi-trybe.herokuapp.com/api/planets/');
@@ -62,10 +70,15 @@ function StarProvider({ children }) {
 
   function onFilter() {
     const { value, comparison, column } = filterByNumericValues;
+    setFilterSelect(
+      ...filterSelect,
+      column,
+      comparison,
+      value,
+    );
+    const option = arrayColumn.filter((elemento) => elemento !== column);
+    setArrayColumn(option);
     setFilterlist(filterlist.filter((item) => {
-      /* if (item[column] === 'unknown') {
-        item[column] = 0;
-      } */
       if (comparison === 'maior que') {
         return Number(item[column]) > Number(value);
       }
@@ -77,6 +90,8 @@ function StarProvider({ children }) {
   }
 
   const contextType = {
+    filterSelect,
+    arrayColumn,
     filterlist,
     filterByNumericValues,
     handleChange,
