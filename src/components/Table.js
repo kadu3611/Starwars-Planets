@@ -3,14 +3,9 @@ import Context from '../context/Context';
 import Header from './Hedear';
 
 function Table() {
-  const { filterlist,
-    filterByNumericValues,
-    handleChange,
-    handleChangeFilter,
-    onFilter,
-    arrayColumn,
-    filterSelect } = useContext(Context);
-    console.log(filterSelect);
+  const { filterlist, handleChange, onFilter, arrayColumn,
+    filterSelect, deleteFilter, starValue, setStarComparison, setStarColumn,
+    setStarValue, deleteAll } = useContext(Context);
   return (
     <body>
       <input
@@ -22,7 +17,7 @@ function Table() {
         Coluna
         <select
           data-testid="column-filter"
-          onChange={ handleChangeFilter }
+          onChange={ ({ target }) => setStarColumn(target.value) }
           id="column"
         >
           {
@@ -39,7 +34,7 @@ function Table() {
         <select
           id="comparison"
           data-testid="comparison-filter"
-          onChange={ handleChangeFilter }
+          onChange={ ({ target }) => setStarComparison(target.value) }
         >
           <option value="maior que">maior que</option>
           <option value="menor que">menor que</option>
@@ -49,9 +44,9 @@ function Table() {
       <input
         type="number"
         data-testid="value-filter"
-        onChange={ handleChangeFilter }
+        onChange={ ({ target }) => setStarValue(target.value) }
         id="value"
-        value={ filterByNumericValues.value }
+        value={ starValue }
       />
       <button
         type="button"
@@ -59,6 +54,36 @@ function Table() {
         onClick={ onFilter }
       >
         FILTRAR
+      </button>
+      {
+        filterSelect.map((item, index) => (
+          <p
+            data-testid="filter"
+            key={ index }
+          >
+            {' '}
+            {item.selecColumn}
+            {' '}
+            {item.selecComparison}
+            {' '}
+            {item.selecValue}
+            {' '}
+            <button
+              type="button"
+              value={ item.selecColumn }
+              onClick={ deleteFilter }
+            >
+              delete
+            </button>
+          </p>
+        ))
+      }
+      <button
+        type="button"
+        data-testid="button-remove-filters"
+        onClick={ deleteAll }
+      >
+        Remover todas filtragens
       </button>
       <table>
         <Header />

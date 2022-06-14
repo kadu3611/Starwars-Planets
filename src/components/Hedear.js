@@ -8,10 +8,10 @@ function Header() {
           Name
         </th>
         <th>
-          Rotation Period
+          Orbital Period
         </th>
         <th>
-          Orbital Period
+          Rotation Period
         </th>
         <th>
           Diameter
