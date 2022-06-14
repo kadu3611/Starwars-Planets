@@ -19,7 +19,6 @@ function StarProvider({ children }) {
 
   const [arrayColumn, setArrayColumn] = useState(['population',
     'orbital_period', 'diameter', 'rotation_period', 'surface_water']);
-
   useEffect(() => {
     const apiStar = async () => {
       try {
