@@ -44,4 +44,4 @@ npm run lint
 npm run lint:styles
 ```
 ---
-<h1 align="center"> DIVIRTA-SE </h1>
+<h1 align="center"> DIVIRTA-SE! </h1>
